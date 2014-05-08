@@ -1,0 +1,43 @@
+from django.conf.urls.defaults import *
+from cookcrew_legacy.recipes.views import show_recipes, show_recipes_type, show_recipe
+from cookcrew_legacy.views import show_welcome, show_welcome2, contact, contact_thanks, rcp
+from cookcrew_legacy.menus.views import show_menus, show_menus_other, show_shopping_list, show_meal, show_lateplates, add_lateplate
+from cookcrew_legacy.schedules.views import show_cleaning, show_events
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
+# Uncomment this for admin:
+from django.contrib import admin
+
+admin.autodiscover()
+
+urlpatterns = patterns('',
+                       # Example:
+                      (r'^cl/$', show_welcome),
+                      (r'^cl/cl2/$', show_welcome2),
+                      (r'^cl/contact/$', contact),
+                      (r'^cl/contact/thanks/$', contact_thanks),
+                      (r'^cl/recipes/$', show_recipes),
+                      (r'^cl/recipes/(?P<urlRecType>\d+)/$', show_recipes_type),
+                      (r'^cl/recipes/(?P<urlRecType>\d+)/(?P<urlRecId>\d+)/$',
+                       show_recipe),
+                      (r'^cl/menus/$', show_menus),
+                      (r'^cl/menus/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/$',
+                       show_menus_other),
+                      (r'^cl/meal/(?P<meal_id>\d+)/$', show_meal),
+                      (r'^cl/lateplates/me/(?P<meal_id>\d+)/$', add_lateplate),
+                      (r'^cl/lateplates/(?P<meal_id>\d+)/$', show_lateplates),
+                      (r'^cl/shopping/(?P<menu_id>\d+)/$', show_shopping_list),
+                      (r'^cl/cleaning/$', show_cleaning),
+                      (r'^cl/events/$', show_events),
+                      (r'^cl/rcp/$', rcp),
+
+                       # Uncomment this for admin docs:
+                      (r'^cl/admin/doc/', include(
+                          'django.contrib.admindocs.urls')),
+
+                       # Uncomment this for admin:
+                       #('^admin/(.*)', admin.site.root),
+                       url(r'^cl/admin/', include(admin.site.urls)),
+                       )
+urlpatterns += staticfiles_urlpatterns()

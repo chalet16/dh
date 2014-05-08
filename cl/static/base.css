@@ -1,0 +1,140 @@
+/*********************  Main Page CSS  **************/
+body {
+background-color: white;
+text-align: center;
+}
+
+#container
+{
+width: 900px;
+margin: auto;
+background-color: #66CCFF; /* #99CCFF; */
+color: #333;
+border: 2px solid blue;
+line-height: 130%;
+text-align: left;
+}
+
+#top
+{
+padding: .5em;
+background-color: white;
+border: 1px solid gray;
+}
+
+#top h1
+{
+padding: 0;
+margin: 0;
+font-size: 14pt;
+}
+
+#leftnav
+{
+float: left;
+width: 140px;
+margin: 0;
+padding: 1em;
+background-color: none;
+height: 100%
+}
+
+#rightnav
+{
+float: right;
+width: 120px;
+margin: 0;
+padding: 1em;
+background-color: none;
+}
+
+#content
+{
+margin-left: 160px;
+border-left: none;
+margin-right: 140px;
+border-right: none;
+padding: 1em;
+width: 100%;
+background-color: none;
+min-height: 400px;
+}
+
+#footer
+{
+clear: both;
+margin: 0;
+padding: .5em;
+color: #333;
+background-color: white;
+border: 1px solid gray;
+}
+
+#leftnav p, #rightnav p { margin: 0 0 1em 0; }
+#content h2 { margin: 0 0 .5em 0; }
+
+
+/*************** Horizontal Menu *****************/
+.navlist
+{
+display: inline;
+padding: 0em 0;
+border: 3px solid #66FF66;
+margin: 0;
+list-style-type: none;
+float: left;
+color: yellow;
+background-color: #66FF66;
+width: 40em;
+}
+
+.navlist li
+{
+display: inline; 
+}
+
+.navlist li a
+{
+width: 6em;
+color: black;
+background-color: #66FF66;
+padding: 0em 1em;
+text-decoration: none;
+border-right: 1px solid #fff;
+}
+
+.navlist li a:hover
+{
+background-color: #CCFFCC;
+color: black;
+}
+
+
+/*************** Left Menu *****************/
+.lnav
+{
+padding: 0;
+margin: 0;
+list-style-type: none;
+float: left;
+color: white;
+background-color: none;
+width: 110px;
+}
+
+.lnav li a
+{
+display: block;
+width: 110px;
+color: white;
+background-color: #0099ff;
+padding: 0.2em 1em;
+text-decoration: none;
+/*border-right: 1px solid #fff;*/
+}
+
+.lnav li a:hover
+{
+background-color: #66CCFF;
+color: black;
+}

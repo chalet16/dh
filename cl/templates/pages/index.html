@@ -1,0 +1,57 @@
+{% extends "pages/page.html" %}
+{% block main %}
+    <header>
+      <div class="row">
+        <div class="span6">
+        
+            <h1>{% block truhead %}Menu{% endblock %}</h1>
+            <p class="lead">German House Cookcrew Site.</p>
+       </div>
+      </div>
+      <div class="subnav">
+        <ul class="nav nav-pills">
+		      <li><a href="{% url show_menus_other date.prevMonth.year date.prevMonth.month date.prevMonth.day %}"><i class="icon icon-chevron-left"></i>Month</a></li>
+		      <li><a href="{% url show_menus_other date.prevWeek.year date.prevWeek.month date.prevWeek.day %}"><i class="icon icon-chevron-left"></i>Week</a></li>
+		      <li><a href="{% url show_menus_other date.now.year date.now.month date.now.day %}">This Week</a></li>
+		      <li><a href="{% url show_menus_other date.nextWeek.year date.nextWeek.month date.nextWeek.day %}">Week<i class="icon  icon-chevron-right"></i></a></li>
+              <li><a href="{% url show_menus_other date.nextMonth.year date.nextMonth.month date.nextMonth.day %}">Month<i class="icon  icon-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </header>
+    {% block content %}
+    <!-- Sectino -->
+    <section id="">
+	  <div class="page-header">
+	    <h1>Today</h1>
+	  </div>
+	
+	  <!-- Headings & Paragraph Copy -->
+	  <div class="row">
+	<div class="span5 offset3">
+	{% if meals|length > 0 %}
+		{% for meal in meals %}
+	
+	    <h3><a href="{% url show_meal meal.pk %}/">{{ meal.name }}:</a></h3>
+	    <ul class="unstyled">
+	    {% for recipe in meal.recipes %}
+	      <li>{{ recipe }}</li>
+	    {% endfor %}</p>
+	   </ul>
+	  {% endfor %}
+	{% else %}
+	<h3>No meal shall be served today.</h3>
+	{% endif %} 
+	</div>
+	
+	</section>
+    <!-- Some section -->
+    {% endblock %}
+    <section>
+    </section>
+    <!-- Some section -->
+    <section>
+    </section>
+    
+{% endblock %}
+~                                                                                       
+~                   

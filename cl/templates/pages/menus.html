@@ -1,0 +1,25 @@
+{% extends "pages/index.html" %}
+{% block content %}
+
+{% for menu in menus%}
+    <div class="page-header">
+        <h2>{{ menu.name }}<a class="button pull-right" href="{% url show_shopping_list menu.pk %}/"><i class="icon icon-shopping-cart"></i>Shopping List </a></h2>
+     </div>
+    <div class="span5 offset2">
+  {% for meal in menu.meals %}
+
+    <h3><a href="{% url show_meal meal.pk %}">{{ meal.name }}:</a></h3>
+    <div class="row-fluid">
+    <ul class="unstyled">
+    {% for recipe in meal.recipes %}
+      <li class="offset1">{{ recipe }}</li>
+    {% endfor %}
+    </ul>
+    </div>
+<hr/>
+  {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}
+
+

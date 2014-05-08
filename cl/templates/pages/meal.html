@@ -1,0 +1,49 @@
+{% extends "pages/page.html" %}
+
+
+{% block main %}
+<div class="page-header">
+<h1>Recipes for This Meal</h1>
+</div>
+<div class="row">
+<div class ="span7 offset1">
+
+{% for recipe in recipes %}
+  <h2>{{recipe.name}}</h2>
+      <h3>Serves: {{recipe.servings|floatformat}}</h3>
+      <table class="table">
+        {% for ing in recipe.ingredients %}
+         <tr>
+           <td>{{ing.name}}</td>
+           <td>{{ing.amount|floatformat:2}}</td>
+           <td>{{ing.measure}}(s)</td>
+         </tr>
+        {% endfor %}
+        </table>
+           <h3>Directions:</h3>
+               <pre>{{recipe.directions}}</pre>
+  {% if not forloop.last %}
+  <hr>
+  {% endif %}
+{% endfor %}
+</div>
+<div class="span3 offset1">
+<h2>Spaet Plates:</h2>
+<p><a href="https://dh.scripts.mit.edu:444/dns/certs.php?meal={{meal_id}}&p=me">
+<i class="icon-plus"></i>Yourself</a>
+<a href="https://dh.scripts.mit.edu:444/dns/certs.php?meal={{meal_id}}&p=all"> 
+<i class="icon-eye-open"></i>All</a></p>
+{% if lateplates %}	
+	<ol class="unstyled well well-small">
+	{% for user in lateplates %}
+	<li>{{ user.first_name }}</li>
+	{% endfor %}
+{% endif %}
+	</ol>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+

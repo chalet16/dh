@@ -1,0 +1,24 @@
+{% extends "pages/index.html" %}
+{% block truhead %}Shopping List{% endblock %}
+
+{% block content %}
+<div class="span6 offset3">
+<table class="table">
+      {% for ing in ingredients %}
+
+         <tr><td>{{ ing.name }}</td><td>
+             {% for measure in ing.measures %}
+               {{measure.amount|floatformat:2}}&nbsp;&nbsp;{{measure.measure.name}}(s)
+             {% endfor %}
+             </td>
+         </tr>
+
+      {% endfor %}
+</table>
+</div>
+<div class="span3"></div>
+
+{% endblock %}
+
+
+

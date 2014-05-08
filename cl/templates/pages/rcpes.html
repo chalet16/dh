@@ -1,0 +1,77 @@
+{% extends "pages/page.html" %}
+{% block main %}
+    <!-- Sectino -->
+    <section id="typography">
+	  <div class="page-header">
+	    <h1>{% ifequal state 'showAll' %}All Recipes{% endifequal %}
+	    {% ifequal state 'showType' %}Filtered Recipes{% endifequal %}
+	    {% ifequal state 'showRecipe' %}{{recDisplay.name}}{% endifequal %}</h1>
+	  </div>
+	
+	  <!-- Headings & Paragraph Copy -->
+	  <div class="row row-fluid">
+	    <div class="span2">
+	      <div>
+	      <h3>Filter <i class="icon pull-right icon-filter"></i></h3>
+	        <ul class="nav nav-tabs nav-stacked">
+	        
+   	        {% for type in recipeTypes %}
+			   <li><a href="{% url show_recipes_type type.id %}"> {{ type.uniCode }} </a></li>
+			{% endfor %}
+				<li><a href="{% url show_recipes %}"> Show All </a></li>
+	        </ul>
+     	   </div>
+	    </div>
+	    <div class="span7 offset1">
+	    {% ifequal state 'showAll' %}
+		  <table class="table table-bordered table-striped">
+              <tbody>
+				  {% for recipe in recipes %}
+				  <tr><td>
+				    <a href="{% url show_recipe recipe.category_id recipe.id %}">{{ recipe.name }}</a> <br>
+		         </td></tr>
+				  {% endfor %}
+			  </tbody>
+		  </table>
+		  <div class="pagination pagination-mini">
+			  <ul>
+			  {% for i in recipes.paginator.page_range %}
+			     <li><a href="?page={{ i }}">{{ i }}</a></li>
+			  {% endfor %}
+			  </ul>
+		  </div>
+		{% endifequal %}
+		
+		{% ifequal state 'showType' %}
+		<table class="table table-bordered table-striped">
+              <tbody>
+          {% for recipe in recipes %}
+          <tr><td>
+            <a href="{% url show_recipe recipe.category_id recipe.id %}">{{ recipe.name }}</a> <br>
+        </td></tr>
+          {% endfor %}
+          </tbody>
+          </table>
+		 
+		  {% endifequal %}
+		  {% ifequal state 'showRecipe' %}
+           <h2>Serves: {{recDisplay.servings|floatformat}}</h2>
+	      <table class="table">
+		      {% for ing in recDisplay.ingredients %}
+		         <tr><td>{{ing.name}}</td><td>{{ing.amount|floatformat:2}}</td><td>{{ing.measure}}(s)</td></tr>
+		      {% endfor %}
+	      </table>
+      <h2>Directions:</h2>
+      <div class="code">
+        <pre>{{recDisplay.directions}}</pre>
+        </div>
+    {% endifequal %}
+    </div>
+    <div class="span2">
+    {% ifequal doForm '1' %}
+<form action="." method="post" class="form-inline">{% csrf_token %}{{ form.servings }}<button type="submit" class="btn">Go</button>
+</form>
+
+{% endifequal %}
+</div>
+{% endblock %}

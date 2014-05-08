@@ -1,0 +1,21 @@
+.event { 
+border: 1px solid blue;
+background-color: blue;
+color: white;
+}
+
+.eventHeader { 
+background-color: lightblue;
+color: black;
+}
+
+.cleaning { 
+background-color: lightblue;
+color: white;
+}
+
+.cleaningRow { 
+border-top: 1px solid blue;
+background-color: lightblue;
+color: black;
+}

@@ -1,0 +1,28 @@
+{% extends "pages/page.html" %}
+
+{% block main %}
+<div class="span4 offset4">
+<h2>Spaet Plates for <a href="{% url show_meal meal_id %}">This Meal</a></h2>
+<table class="table">
+<form action="{% url show_lateplates meal_id %}" method="post">
+<input type="hidden" name="user" value="{{ user }}">
+<thead>
+<tr><th>Add:</th></tr>
+</thead>
+<tbody>
+{% for user in users %}
+  <tr><td><input class="btn span2 offset2" type="Submit" name="Add" value="{{ user.first_name }}"></tr></td>
+{% endfor %}
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr><td>Remove:</td></tr>
+</thead>
+<tbody>
+{% for user in currentUsers %}
+  <tr><td><input type="Submit" class="btn span4 offset1"  name="Remove" value="{{ user.first_name }}" style="width:100px;"></td></tr>
+{% endfor %}
+</form>
+</div>
+{% endblock %}
